@@ -1,6 +1,9 @@
 # ignore .vscode folder
 .vscode
 
+# ignore the buile folder
+build/
+
 # Prerequisites
 *.d
 
