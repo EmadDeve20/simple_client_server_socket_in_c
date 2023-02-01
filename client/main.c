@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <unistd.h>
 
 #define SERVER_MESSAGE_SIZE 1024
 #define CLIENT_MESSAGE_SIZE 500
@@ -53,4 +54,7 @@ int main()
     recv(client_fd, response, SERVER_MESSAGE_SIZE, 0);
 
     printf("Message From Server: %s\n", response);
+
+    close(client_fd);
+    shutdown(socket_port, SHUT_RDWR);
 }
