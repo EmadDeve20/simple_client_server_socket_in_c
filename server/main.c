@@ -12,7 +12,7 @@
 
 int main(int argc, char *argv[])
 {
-    int master_socket, new_socket, clientLen, read_size, opt = 1;
+    int master_socket, new_socket, socket_len, read_size, opt = 1;
     struct sockaddr_in client_address;
     char message[SERVER_MESSAGE_SIZE] = {0};
     char client_message[CLIENT_MESSAGE_SIZE];
@@ -37,6 +37,8 @@ int main(int argc, char *argv[])
     client_address.sin_addr.s_addr = INADDR_ANY;
     client_address.sin_port = htons(PORT);
 
+    socket_len = sizeof(client_address);
+
     if (bind(master_socket, (struct sockaddr*)&client_address, sizeof(client_address)) < 0)
     {
         perror("The binding Failed!");
@@ -55,7 +57,7 @@ int main(int argc, char *argv[])
     while(1)
     {
         //accept connection from an incoming client
-        if ((new_socket = accept(master_socket,(struct sockaddr *)&client_address,(socklen_t*)&clientLen)) < 0)
+        if ((new_socket = accept(master_socket,(struct sockaddr *)&client_address,(socklen_t*)&socket_len)) < 0)
         {
             perror("accept failed");
             return 1;
@@ -70,7 +72,7 @@ int main(int argc, char *argv[])
         if( recv(new_socket, client_message, 500, 0) < 0)
         {
             printf("recv failed");
-            break;
+            // break;
         }
 
         printf("Client reply : %s\n",client_message);
