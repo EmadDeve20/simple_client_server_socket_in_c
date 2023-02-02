@@ -68,16 +68,16 @@ int main(int argc, char *argv[])
         memset(client_message, '\0', sizeof client_message);
         memset(message, '\0', sizeof message);
 
-        //Receive a reply from the client
-        if( recv(new_socket, client_message, 500, 0) < 0)
+        //Get Client Messgae
+        if(read(new_socket, client_message, 500) < 0)
         {
             printf("recv failed");
             // break;
         }
 
-        printf("Client reply : %s\n",client_message);
+        printf("Client Messgae : %s\n",client_message);
         
-        snprintf(message,  strlen(client_message), "Server saw your message: %s", client_message);
+        sprintf(message,  "Server saw your message: %s", client_message);
 
         if( send(new_socket, message, strlen(message), 0) < 0)
         {
