@@ -9,7 +9,3 @@ for compilling, run the builder script
 ``` ./builer ```
 
 after that, you will see a build directory with to binary code! the client and server.
-
-## TODO
-
-- [ ] fix the client bug (Connection refused)! 
