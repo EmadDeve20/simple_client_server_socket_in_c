@@ -48,10 +48,10 @@ int main()
     fgets(message, 500, stdin);
 
     // send your message to server 
-    send(client_fd, message, CLIENT_MESSAGE_SIZE, 0);
+    send(socket_port, message, CLIENT_MESSAGE_SIZE, 0);
 
     // recive message for server (get response)
-    recv(client_fd, response, SERVER_MESSAGE_SIZE, 0);
+    recv(socket_port, response, SERVER_MESSAGE_SIZE, 0);
 
     printf("Message From Server: %s\n", response);
 
